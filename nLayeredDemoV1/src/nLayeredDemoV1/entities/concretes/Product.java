@@ -1,6 +1,8 @@
 package nLayeredDemoV1.entities.concretes;
 
-public class Product {
+import nLayeredDemoV1.entities.abstracts.Entity;
+
+public class Product implements Entity {
 	private int id;
 	private int categoryId;
 	private String name;
