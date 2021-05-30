@@ -6,6 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ygtcvk.kodlamaio.business.abstracts.ProductService;
+import ygtcvk.kodlamaio.core.utilities.results.DataResult;
+import ygtcvk.kodlamaio.core.utilities.results.Result;
+import ygtcvk.kodlamaio.core.utilities.results.SuccessDataResult;
+import ygtcvk.kodlamaio.core.utilities.results.SuccessResult;
 import ygtcvk.kodlamaio.dataAccess.abstracts.ProductDao;
 import ygtcvk.kodlamaio.entities.concretes.Product;
 
@@ -20,9 +24,16 @@ public class ProductManager implements ProductService {
 	}
 
 	@Override
-	public List<Product> getAll() {
+	public DataResult<List<Product>> getAll() {
 		// TODO Auto-generated method stub
-		return null;
+		return new  SuccessDataResult<List<Product>>(this.productDao.findAll(),"Data Listelendi");
+					
+	}
+
+	@Override
+	public Result add(Product product) {
+		this.productDao.save(product);
+		return new SuccessResult("Ürün Eklendi");
 	}
 
 }
