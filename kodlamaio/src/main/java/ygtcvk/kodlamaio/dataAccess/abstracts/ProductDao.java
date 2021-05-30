@@ -11,19 +11,20 @@ public interface ProductDao extends JpaRepository<Product, Integer> {
 
 	/*crud operasyonları*/
 	
-	Product getByProductName (String productName);
-	
-	Product getByProductNameAndcCategoryId(String productName,int categoryId);
-	
-	List<Product>getByProductNameOrCategoryId(String productName,int categoryId);
-	
-	List<Product>getByCategoryIdIn(List<Integer>categories);
-	
-	List<Product>getByProductNameContain(String productName);
-	
-	List<Product>getByProductNameStarsWith(String productName);
-	
-	@Query("")
-	List<Product>GetByNameAndCategory(String productName,int categoryId);
-	
+	Product getByProductName(String productName);
+	  
+	  Product getByProductNameAndCategory_CategoryId(String productName, int categoryId);
+	  
+	  List<Product> getByProductNameOrCategory_CategoryId(String productName, int categoryId);
+	  
+	  List<Product> getByCategoryIn(List<Integer> categories);
+	  
+	  List<Product> getByProductNameContains(String productName);
+	  
+	  List<Product> getByProductNameStartsWith(String productName);
+	  
+	  @Query("From Product where productName=:productName and category.categoryId=:categoryId")
+	  List<Product> getByNameAndCategory(String productName, int categoryId);
+	  
+	  //select * from products where product_name=bisey and categoryId=bisey
 }
